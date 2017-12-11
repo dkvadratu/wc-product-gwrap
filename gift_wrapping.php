@@ -54,6 +54,8 @@ class WC_Product_GWrap {
 		add_filter( 'woocommerce_get_item_data', array($this, 'show_gwrap_status'), 10, 2);
 		// add the filter to cart item title
 		add_filter( 'woocommerce_cart_item_name', array($this, 'modify_cart_item_name'), 1, 3 );
+		//save meta to product oreder
+		add_filter( 'woocommerce_add_order_item_meta', array($this, 'add_order_item_meta'), 10, 2 );
 	}
 
 	public function enqueue_js(){
@@ -302,9 +304,20 @@ class WC_Product_GWrap {
 		}
 
 	}
+
+	//adding data to order page
+	public function add_order_item_meta( $item_id, $values ) {
+		$mb = maybe_serialize($values);
+		woocommerce_add_order_item_meta($item_id, 'test', 'tetst_ ' . $mb);
+		global $woocommerce;
+		foreach($woocommerce->cart->cart_contents as $item){
+			if(isset($item['gift_wrap']) && $item['gift_wrap'] != 0){
+				woocommerce_add_order_item_meta($item_id, 'Įpakavimas', $item['gift_wrap_title'] . ' ' . $item['gift_wrap_price'] . 'vnt. Suma: ' . $item['gift_wrap_price'] * $item['gift_wrap_qty'] . '€');
+			}
+		}
+	}
 }
 
 new WC_Product_GWrap();
 
 //TODO on quantioty reduce check if there is gwrap. If yes. check how many packings. If more than cart_quanitnty then reduce packing quantity
-//TODO add info to order data for admins
