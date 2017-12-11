@@ -1,0 +1,29 @@
+/*Popup for gift*/
+a.gwrap_icon {
+    margin-left: 5px;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+	vertical-align: text-top;
+    background: url(http://localhost/gwrap/wp-content/plugins/7natos_gift_wrap/gift.png) center center no-repeat;
+}
+
+.gwrap_block{
+	display:inline-block;
+	width: 50%;
+	margin-bottom: 20px;
+}
+.gwrap_block input[type='radio']{
+	display:block;
+	margin: 0 auto;"
+}
+input.gwrap_qty {
+    width: 25%!important;
+    display: block;
+    margin: 0 auto;
+	margin-bottom: 20px;
+    text-align: center;
+}
+a.add_gwrap_btn.button {
+    margin-right: 0;
+}
