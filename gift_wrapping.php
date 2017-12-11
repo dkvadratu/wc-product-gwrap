@@ -307,8 +307,6 @@ class WC_Product_GWrap {
 
 	//adding data to order page
 	public function add_order_item_meta( $item_id, $values ) {
-		$mb = maybe_serialize($values);
-		woocommerce_add_order_item_meta($item_id, 'test', 'tetst_ ' . $mb);
 		global $woocommerce;
 		foreach($woocommerce->cart->cart_contents as $item){
 			if(isset($item['gift_wrap']) && $item['gift_wrap'] != 0){
